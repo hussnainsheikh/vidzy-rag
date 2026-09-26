@@ -1,0 +1,14 @@
+fastapi==0.117.1
+uvicorn[standard]==0.36.0
+pydantic-settings==2.11.0
+langchain-core==0.3.76
+langchain-chroma==0.2.6
+langchain-huggingface==0.3.1
+sentence-transformers==5.1.1
+# PyTorch 2.2's macOS wheel is compiled against NumPy 1.x.
+numpy==1.26.4
+scipy==1.14.1
+chromadb==1.1.0
+pytest==8.4.2
+pytest-cov==7.0.0
+httpx==0.28.1

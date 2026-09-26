@@ -1,0 +1,26 @@
+{"id":"exact-cta","query":"Can Vidzy show calls-to-action during video playback?","kind":"exact","expected_question_ids":["faq-timed-cta"],"should_answer":true}
+{"id":"exact-leads","query":"Can I export captured leads?","kind":"exact","expected_question_ids":["faq-export-leads"],"should_answer":true}
+{"id":"exact-analytics","query":"What viewer activity does Vidzy track?","kind":"exact","expected_question_ids":["faq-analytics-events"],"should_answer":true}
+{"id":"exact-embed","query":"How do I embed a Vidzy video?","kind":"exact","expected_question_ids":["faq-embed-video"],"should_answer":true}
+{"id":"exact-password","query":"Can I password protect a video?","kind":"exact","expected_question_ids":["faq-password-video"],"should_answer":true}
+{"id":"para-cta","query":"Could a clickable prompt appear midway through playback?","kind":"paraphrase","expected_question_ids":["faq-timed-cta","faq-cta-types"],"should_answer":true}
+{"id":"para-lead-pause","query":"When the contact form pops up, will the movie stop and continue afterwards?","kind":"paraphrase","expected_question_ids":["faq-lead-playback"],"should_answer":true}
+{"id":"para-crm","query":"Will new contacts be pushed into HubSpot automatically?","kind":"paraphrase","expected_question_ids":["faq-crm-integration"],"should_answer":true}
+{"id":"para-overlays","query":"May I position a watermark on top of the footage for only part of it?","kind":"paraphrase","expected_question_ids":["faq-image-overlays"],"should_answer":true}
+{"id":"para-watch","query":"Is the reported viewing percentage actual continuous watch duration?","kind":"paraphrase","expected_question_ids":["faq-average-watch-meaning"],"should_answer":true}
+{"id":"term-source","query":"Does the platform ingest and host my MP4 file?","kind":"terminology","expected_question_ids":["faq-upload-source-video","faq-supported-video-sources"],"should_answer":true}
+{"id":"term-replay","query":"How are rewatched segments or hotspots detected?","kind":"terminology","expected_question_ids":["faq-replay-hotspots"],"should_answer":true}
+{"id":"term-email","query":"Do you make a GIF thumbnail for newsletters?","kind":"terminology","expected_question_ids":["faq-email-preview"],"should_answer":true}
+{"id":"term-domain","query":"Can I white-label sharing links with my DNS name?","kind":"terminology","expected_question_ids":["faq-custom-domain"],"should_answer":true}
+{"id":"term-popup","query":"Can an offer message be scheduled over the player?","kind":"terminology","expected_question_ids":["faq-popup-types","faq-popup-timing"],"should_answer":true}
+{"id":"ambiguous-analytics","query":"Tell me about analytics","kind":"ambiguous","expected_question_ids":["faq-analytics-events","faq-heatmap-meaning","faq-dashboard-date-comparison","faq-average-watch-meaning"],"should_answer":false}
+{"id":"ambiguous-customize","query":"What can I customize?","kind":"ambiguous","expected_question_ids":["faq-branding-options","faq-logo-thumbnail","faq-image-overlays"],"should_answer":false}
+{"id":"ambiguous-links","query":"How do links work?","kind":"ambiguous","expected_question_ids":["faq-embed-video","faq-cta-same-tab","faq-custom-domain"],"should_answer":false}
+{"id":"ood-weather","query":"Will it rain in London tomorrow?","kind":"out_of_domain","expected_question_ids":[],"should_answer":false}
+{"id":"ood-recipe","query":"How much flour goes into sourdough bread?","kind":"out_of_domain","expected_question_ids":[],"should_answer":false}
+{"id":"ood-tax","query":"What tax deductions can my company claim?","kind":"out_of_domain","expected_question_ids":[],"should_answer":false}
+{"id":"no-mobile-app","query":"Where can I download the Vidzy iPhone app?","kind":"no_answer","expected_question_ids":[],"should_answer":false}
+{"id":"no-livestream","query":"Can Vidzy host a live webinar stream?","kind":"no_answer","expected_question_ids":[],"should_answer":false}
+{"id":"no-ai-avatar","query":"Can it create an AI avatar from my script?","kind":"no_answer","expected_question_ids":[],"should_answer":false}
+{"id":"no-transcription","query":"Does Vidzy generate subtitles and transcripts automatically?","kind":"no_answer","expected_question_ids":[],"should_answer":false}
+{"id":"no-slack","query":"Does the product send engagement alerts to Slack?","kind":"no_answer","expected_question_ids":[],"should_answer":false}

@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+coverage.xml
+htmlcov/
+.venv/
+venv/
+
+# Runtime data and secrets
+.env*
+!.env.example
+!deploy/.env.production.example
+/ecosystem.config.cjs
+.data/
+.cache/
+.chroma/
+chroma/
+chroma_data/
+huggingface/
+models/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.pid
+
+# Frontend
+web/node_modules/
+web/dist/
+web/.vite/
+web/*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Operating system / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Private Phase 1 knowledge. Preserve locally; never add to a public repository.
+knowledge/internal/
+knowledge/metadata/facts.jsonl
+knowledge/metadata/sources.jsonl
+
+# Evaluation output containing local timings/environment details
+evaluation/results.local.json

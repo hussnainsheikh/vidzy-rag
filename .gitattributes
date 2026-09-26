@@ -1,0 +1,6 @@
+# Defense in depth for release archives if private inputs were force-added locally.
+/knowledge/internal export-ignore
+/knowledge/metadata/facts.jsonl export-ignore
+/knowledge/metadata/sources.jsonl export-ignore
+/.env export-ignore
+/.data export-ignore

@@ -1,0 +1,30 @@
+module.exports = {
+  apps: [
+    {
+      name: 'vidzy-rag',
+      cwd: '/opt/vidzy-rag',
+      script: '/opt/vidzy-rag/.venv/bin/uvicorn',
+      args: 'api.app.main:app --host 127.0.0.1 --port 8100 --workers 1 --no-access-log --proxy-headers --forwarded-allow-ips 127.0.0.1 --timeout-keep-alive 5 --limit-concurrency 32',
+      interpreter: 'none',
+      instances: 1,
+      autorestart: true,
+      max_memory_restart: '900M',
+      min_uptime: '10s',
+      max_restarts: 10,
+      restart_delay: 3000,
+      exp_backoff_restart_delay: 100,
+      kill_timeout: 10000,
+      time: true,
+      merge_logs: true,
+      env: {
+        APP_ENV: 'production',
+        CHROMA_PATH: '/var/lib/vidzy-rag/chroma',
+        KNOWLEDGE_PATH: '/opt/vidzy-rag/knowledge',
+        STATIC_DIR: '/opt/vidzy-rag/web/dist',
+        HF_HOME: '/var/lib/vidzy-rag/huggingface',
+        TOKENIZERS_PARALLELISM: 'false',
+        RAG_RESPONSE_MODE: 'retrieval',
+      },
+    },
+  ],
+}
