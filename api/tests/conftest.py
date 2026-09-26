@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import shutil
 from pathlib import Path
 
 import pytest
@@ -19,12 +20,22 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 @pytest.fixture(scope="session")
-def indexed_runtime(tmp_path_factory):
+def public_knowledge_path(tmp_path_factory):
+    knowledge_path = tmp_path_factory.mktemp("knowledge")
+    shutil.copytree(ROOT / "knowledge" / "public", knowledge_path / "public")
+    metadata_path = knowledge_path / "metadata"
+    metadata_path.mkdir()
+    shutil.copy2(ROOT / "knowledge" / "metadata" / "questions.jsonl", metadata_path / "questions.jsonl")
+    return knowledge_path
+
+
+@pytest.fixture(scope="session")
+def indexed_runtime(tmp_path_factory, public_knowledge_path):
     chroma_path = tmp_path_factory.mktemp("chroma")
     settings = Settings(
         _env_file=None,
         app_env="test",
-        knowledge_path=ROOT / "knowledge",
+        knowledge_path=public_knowledge_path,
         chroma_path=chroma_path,
         internal_api_key="test-internal-key",
         direct_answer_threshold=0.68,

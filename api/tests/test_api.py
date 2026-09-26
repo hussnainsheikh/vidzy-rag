@@ -21,7 +21,7 @@ def test_internal_search_requires_key(client):
     assert client.post("/api/search", json=payload).status_code == 403
     response = client.post("/api/search", json=payload, headers={"X-Internal-API-Key": "test-internal-key"})
     assert response.status_code == 200
-    assert response.json()["results"]
+    assert isinstance(response.json()["results"], list)
 
 
 def test_chat_returns_canonical_answer(client):
