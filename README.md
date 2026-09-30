@@ -44,6 +44,16 @@ flowchart LR
     G --> GA[Grounded generated answer]
 ```
 
+## Demo
+
+### Retrieval-first product knowledge
+
+![Vidzy RAG — retrieval-first product knowledge interface](docs/assets/chat.png)
+
+### Grounded answers with sources
+
+![Grounded answer with sources and related questions](docs/assets/answer.png)
+
 ## Architecture
 
 - `api/app/config` — environment parsing and safe defaults.
@@ -235,10 +245,6 @@ cd web && npm ci && npm run typecheck && npm run lint && npm run build
 The knowledge validator treats original product-repository evidence paths as warnings in this standalone repository. Set `VALIDATE_ORIGINAL_SOURCES=true` only in an environment that also contains that original source tree.
 
 GitHub Actions runs the same public-only checks on pushes and pull requests. Backend CI uses the actual local embedding implementation and caches the model between runs; it does not call a paid API, load private knowledge, or require an LLM key.
-
-## Demo
-
-A public deployment is planned; no live-demo URL is claimed yet. Reviewed screenshots can be added under [`docs/assets/`](docs/assets/README.md) as `chat.png` and `retrieval-debug.png`. Screenshots must show only public knowledge and sanitized diagnostics.
 
 ## Deployment design
 

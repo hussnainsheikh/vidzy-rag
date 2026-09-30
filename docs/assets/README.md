@@ -5,6 +5,6 @@ This directory is reserved for genuine project screenshots and diagrams. Do not 
 Recommended filenames when reviewed screenshots become available:
 
 - `chat.png` — public retrieval-first chat response;
-- `retrieval-debug.png` — sanitized public retrieval diagnostics.
+- `answer.png` — sanitized public retrieval diagnostics.
 
 Optimize images for web use and add descriptive alt text wherever they are embedded.
