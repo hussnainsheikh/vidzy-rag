@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      HF_HOME: ${{ runner.temp }}/huggingface
+      HF_HOME: ${{ github.workspace }}/.cache/huggingface
       TOKENIZERS_PARALLELISM: "false"
       RAG_RESPONSE_MODE: retrieval
       OPENAI_API_KEY: ""
@@ -35,7 +35,7 @@ jobs:
       - name: Cache embedding model
         uses: actions/cache@v4
         with:
-          path: ${{ runner.temp }}/huggingface
+          path: ${{ github.workspace }}/.cache/huggingface
           key: ${{ runner.os }}-hf-all-minilm-l6-v2-v1
 
       - name: Install backend dependencies
