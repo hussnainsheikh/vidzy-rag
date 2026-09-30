@@ -20,7 +20,6 @@ jobs:
       HF_HOME: ${{ github.workspace }}/.cache/huggingface
       TOKENIZERS_PARALLELISM: "false"
       RAG_RESPONSE_MODE: retrieval
-      OPENAI_API_KEY: ""
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

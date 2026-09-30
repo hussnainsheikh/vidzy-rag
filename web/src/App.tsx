@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react'
 
 type Source = { id: string; label: string; category?: string; document_type: string }
 type Related = { question: string; answer?: string; score: number; category?: string }
-type Detail = { label: string; score: number; category?: string }
+type Detail = { id: string; label: string; score: number; category?: string; document_type: string }
 type ChatResponse = {
   answer: string
   response_type: 'direct_answer' | 'related_results' | 'no_reliable_answer'
@@ -20,6 +20,32 @@ const suggestions = [
   'How do I embed a Vidzy video?',
 ]
 
+const categoryLabels: Record<string, string> = {
+  account: 'Accounts',
+  analytics: 'Video analytics',
+  cta: 'Timed CTAs',
+  customization: 'Player customization',
+  'custom-domain': 'Custom domains',
+  embed: 'Video embeds',
+  'email-preview': 'Email previews',
+  integration: 'Integrations',
+  'lead-capture': 'Lead capture',
+  plans: 'Plans & limits',
+  player: 'Video player',
+  popup: 'Video popups',
+  security: 'Video access',
+  video: 'Video sources',
+}
+
+function formatCategory(category?: string) {
+  if (!category) return 'General'
+  return categoryLabels[category] ?? category.split('-').map((word) => `${word[0]?.toUpperCase() ?? ''}${word.slice(1)}`).join(' ')
+}
+
+function sourceDisplayLabel(source: Source) {
+  return source.category ? formatCategory(source.category) : 'Vidzy product knowledge'
+}
+
 function App() {
   const [message, setMessage] = useState('')
   const [result, setResult] = useState<ChatResponse | null>(null)
@@ -34,6 +60,7 @@ function App() {
     setLoading(true)
     setError('')
     setResult(null)
+    setDebug(false)
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -64,10 +91,10 @@ function App() {
         <div className="verified"><i /> Verified public knowledge</div>
       </header>
 
-      <section className="hero">
+      <section className={`hero${result ? ' has-result' : ''}`}>
         <div className="eyebrow">Retrieval-first product guide</div>
         <h1>Ask Vidzy.<br /><span>Get grounded answers.</span></h1>
-        <p className="lede">Explore product capabilities through answers retrieved from verified documentation—without an AI model inventing the gaps.</p>
+        <p className="lede">Explore Vidzy capabilities through answers retrieved from verified product knowledge—with safe no-answer behavior when evidence is missing.</p>
 
         <form className="ask" onSubmit={submit}>
           <label htmlFor="question">Your question</label>
@@ -101,15 +128,31 @@ function App() {
           <article className={`answer ${result.response_type}`}>
             <div className="answer-top">
               <span className="answer-state">{result.response_type === 'direct_answer' ? 'Verified answer' : result.response_type === 'related_results' ? 'Related information' : 'No reliable answer'}</span>
-              <span className="score">{Math.round(result.confidence * 100)}% match</span>
             </div>
             <p>{result.answer}</p>
-            {result.sources.length > 0 && <div className="sources"><b>Sources</b>{result.sources.map((source) => <span key={source.id}>{source.label}<small>{source.category}</small></span>)}</div>}
+            {result.sources.length > 0 && <div className="sources"><b>Source</b>{result.sources.map((source) => <span key={source.id}><i aria-hidden="true">✓</i>{sourceDisplayLabel(source)}</span>)}</div>}
             {result.related.length > 0 && <div className="related"><b>Related questions</b>{result.related.map((item) => <button key={item.question} onClick={() => void ask(item.question)}><span>{item.question}</span><i>→</i></button>)}</div>}
             {result.retrieval_details.length > 0 && (
               <div className="debug">
-                <button className="debug-toggle" onClick={() => setDebug(!debug)}>{debug ? 'Hide' : 'Show'} retrieval details <span>{result.response_mode}</span></button>
-                {debug && <div className="debug-grid">{result.retrieval_details.map((item, index) => <div key={`${item.label}-${index}`}><span>{item.label}</span><small>{item.category} · {(item.score * 100).toFixed(1)}%</small></div>)}</div>}
+                <button type="button" className="debug-toggle" aria-expanded={debug} onClick={() => setDebug(!debug)}>{debug ? 'Hide' : 'Show'} retrieval details <i aria-hidden="true">⌄</i></button>
+                {debug && (
+                  <div className="debug-panel">
+                    <div className="debug-mode"><span>Response mode</span><b>{result.response_mode}</b></div>
+                    <div className="debug-grid">
+                      {result.retrieval_details.map((item, index) => (
+                        <div className="debug-item" key={item.id || `${item.label}-${index}`}>
+                          <div className="debug-item-top"><span>Match {String(index + 1).padStart(2, '0')}</span><b>{(item.score * 100).toFixed(1)}% similarity</b></div>
+                          <p>{item.label}</p>
+                          <dl>
+                            <div><dt>Category</dt><dd>{formatCategory(item.category)}</dd></div>
+                            <div><dt>Document</dt><dd>{item.document_type === 'canonical_question' ? 'Canonical question' : 'Public knowledge'}</dd></div>
+                            <div><dt>Source ID</dt><dd>{item.id}</dd></div>
+                          </dl>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </article>

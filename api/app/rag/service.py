@@ -105,9 +105,15 @@ class RagService:
     def _debug(results: list[ScoredDocument]) -> list[dict]:
         return [
             {
+                "id": str(
+                    item.document.metadata.get("question_id")
+                    or item.document.metadata.get("fact_id")
+                    or "public-knowledge"
+                ),
                 "label": item.document.metadata.get("canonical_question", "Public knowledge"),
                 "score": round(item.score, 4),
                 "category": item.document.metadata.get("category"),
+                "document_type": str(item.document.metadata.get("document_type", "knowledge")),
             }
             for item in results[:5]
         ]

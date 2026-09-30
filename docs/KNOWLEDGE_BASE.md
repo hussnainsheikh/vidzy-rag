@@ -52,7 +52,7 @@ Private operational or architectural documentation can be placed under the ignor
 `knowledge/metadata/questions.jsonl` contains one JSON object per reviewed public answer. For example, based on the included public Vidzy knowledge:
 
 ```json
-{"id":"faq-timed-cta","scope":"public","question":"Can Vidzy show calls-to-action during video playback?","aliases":["Can a CTA appear while the video is playing?"],"answer":"Yes. A reusable CTA can appear at its default playback time or at a timestamp overridden for a specific assigned video.","category":"cta","status":"verified","source_fact_ids":["cta-timed-display","cta-per-video-timestamp"],"tags":["cta","video-player","timing"]}
+{"id":"faq-timed-cta","scope":"public","question":"Can Vidzy show calls-to-action during video playback?","aliases":["Can a CTA appear while the video is playing?"],"answer":"Yes. Vidzy lets you show a CTA at a configured point during video playback, and the timing can be customized for individual videos.","category":"cta","status":"verified","source_fact_ids":["cta-timed-display","cta-per-video-timestamp"],"tags":["cta","video-player","timing"]}
 ```
 
 Canonical Q&A makes retrieval-only chat possible. A question and its alternative phrasings are embedded for semantic matching; when confidence is sufficient, the API returns the reviewed canonical answer directly. No LLM is required to compose or reinterpret the claim.
