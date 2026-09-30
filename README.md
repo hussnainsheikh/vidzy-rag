@@ -44,7 +44,13 @@ flowchart LR
     G --> GA[Grounded generated answer]
 ```
 
-## Demo
+## Live demo
+
+**[Ask Vidzy](https://ask.vidzyplayer.com)**
+
+Try the retrieval-first Vidzy knowledge assistant powered by LangChain,
+Chroma, and local embeddings. No external LLM is required in the
+default retrieval mode.
 
 ### Retrieval-first product knowledge
 
